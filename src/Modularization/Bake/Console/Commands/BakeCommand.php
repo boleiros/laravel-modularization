@@ -25,6 +25,7 @@ class BakeCommand extends Command
 
         $directories = [
             'Controllers',
+            'Migrations',
             'Providers',
             'Routes',
             'Views',
