@@ -9,7 +9,7 @@ php artisan bake:module [name]
 Run name on plural and lower case, example:
 
 ```
-php artisan bake:module Posts
+php artisan bake:module posts
 ```
 
 Register provider in config/app.php, see command result. Example of command result:
