@@ -1,13 +1,23 @@
 {
     "name": "boleiros/laravel-modularization",
     "description": "Commands to automate the creation of modules in laravel",
+    "license": "MIT",
+    "type": "library",
+    "keywords": ["cakephp", "cms"],
+    "version": "1.0",
     "authors": [
         {
             "name": "Elton Antunes",
             "email": "eltonantunes@hotmail.com"
+        },
+        {
+            "name": "Flaviano Honorato",
+            "email": "flaviano.honorato@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.0.0"
+    },
     "autoload": {
         "psr-4": {
           "Boleiros\\Modularization\\": "src/Modularization/"
@@ -26,5 +36,10 @@
                 "Modularization\\Bake\\Providers\\DefenderServiceProvider"
             ]
         }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }
