@@ -19,7 +19,7 @@ Add this provider to config/app.php:
 Modules\Posts\Providers\PostServiceProvider::class,
 ```
 
-Creating and Running Migrations:
+Creating Migrations:
 
 ```
 php artisan make:migration create_posts_table --path=modules/Posts/Migrations
