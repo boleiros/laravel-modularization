@@ -3,7 +3,7 @@
     "description": "Commands to automate the creation of modules in laravel",
     "license": "MIT",
     "type": "library",
-    "keywords": ["cakephp", "cms"],
+    "keywords": ["laravel", "module"],
     "version": "1.0",
     "authors": [
         {
