@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modularization\\Bake\\Providers\\DefenderServiceProvider"
+                "Modularization\\Bake\\Providers\\BakeServiceProvider"
             ]
         }
     },
