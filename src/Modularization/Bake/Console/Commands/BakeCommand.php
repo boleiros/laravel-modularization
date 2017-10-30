@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Bake\Console\Commands;
+namespace Modularization\Bake\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
