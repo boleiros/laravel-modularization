@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "library",
     "keywords": ["laravel", "module"],
-    "version": "1.0",
+    "version": "1.2",
     "authors": [
         {
             "name": "Elton Antunes",
@@ -25,9 +25,6 @@
       },
     "require-dev": {
         "orchestra/testbench": "~3.5"
-    },
-    "config":{
-    "preferred-install": "dist"
     },
     "minimum-stability" : "stable",
     "extra": {
