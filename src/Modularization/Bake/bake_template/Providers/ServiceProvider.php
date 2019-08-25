@@ -34,7 +34,7 @@ class {{singular-upper}}ServiceProvider extends ServiceProvider
     protected function apiRoutes()
     {        
         if (!$this->app->routesAreCached()) {
-            Route::prefix('api')
+            Route::prefix('api/{{plural-lower}}')
                 ->namespace($this->namespace)
                 ->group(__DIR__ . '/../Routes/api.php');
         }

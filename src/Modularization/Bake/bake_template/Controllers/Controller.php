@@ -10,9 +10,6 @@ class {{plural-upper}}Controller extends Controller
 {
 
     /**
-    use \App\Http\Controllers\ApiControllerTrait; //for APIs
-    use \App\Http\Controllers\CrudControllerTrait; //for dashboards
-
     protected $model;
     protected $path = '{{singular-upper}}::';
     protected $redirectPath = '{{plural-lower}}'; //delete it for ApiCrudControllerTrait

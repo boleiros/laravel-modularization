@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 class BakeCommand extends Command
 {
-    protected $signature = 'bake:module {name}';
+    protected $signature = 'bake:module {name : The module name} {--api : scaffolding like api}';
     protected $description = 'Create a new module skeleton, use the plural name in lowercase and underscore separator';
 
     protected $singular_name;
     protected $plural_name;
+    protected $prefix;
+    protected $routes;
 
     public function handle()
     {
@@ -23,8 +25,18 @@ class BakeCommand extends Command
             throw new \Exception('This modules exists!');
         }
 
+        $this->routes = [
+            'web.php',
+        ];
+
+        if ($this->option('api')) {
+            $this->prefix = 'api';
+            array_push($this->routes, 'api.php');
+        }
+
         $directories = [
             'Controllers',
+            'Models',
             'Migrations',
             'Providers',
             'Routes',
@@ -35,8 +47,7 @@ class BakeCommand extends Command
             'controller' => 'Controller.php',
             'provider' => 'ServiceProvider.php',
             'route' => [
-                'api.php',
-                'web.php',
+                $this->routes
             ],
             'view' => 'index.blade.php',
         ];
@@ -49,15 +60,42 @@ class BakeCommand extends Command
         
         $origin = $base_dir.'Bake/bake_template/';
         
-        $this->createFile($origin . '/Controllers/Controller.php', $base_dir . studly_case($this->plural_name) . '/Controllers/' . studly_case($this->plural_name) . 'Controller.php');
-        $this->createFile($origin . '/Providers/ServiceProvider.php', $base_dir . studly_case($this->plural_name) . '/Providers/' . studly_case($this->singular_name) . 'ServiceProvider.php');
-        $this->createFile($origin . '/Routes/api.php', $base_dir . studly_case($this->plural_name) . '/Routes/api.php');
-        $this->createFile($origin . '/Routes/web.php', $base_dir . studly_case($this->plural_name) . '/Routes/web.php');
-        $this->createFile($origin . '/Views/index.blade.php', $base_dir . studly_case($this->plural_name) . '/Views/index.blade.php');
+        $this->createFile(
+            $origin . '/Controllers/Controller.php', $base_dir . studly_case($this->plural_name) . 
+            '/Controllers/' . studly_case($this->plural_name) . 'Controller.php'
+        );
+        
+        $this->createFile(
+            $origin . '/Models/Model.php', $base_dir . studly_case($this->singular_name) . 
+            '/Models/' . studly_case($this->singular_name) . '.php'
+        );
+        
+        $this->createFile(
+            $origin . '/Providers/ServiceProvider.php', $base_dir . studly_case($this->plural_name) . 
+            '/Providers/' . studly_case($this->singular_name) . 'ServiceProvider.php'
+        );
+        
+        if ($this->option('api')) {
+            $this->createFile(
+                $origin . '/Routes/api.php', $base_dir . studly_case($this->plural_name) . 
+                '/Routes/api.php'
+            );
+        } else {
+            $this->createFile(
+                $origin . '/Routes/web.php', $base_dir . studly_case($this->plural_name) . 
+                '/Routes/web.php'
+            );
+        }
+
+        $this->createFile(
+            $origin . '/Views/index.blade.php', $base_dir . studly_case($this->plural_name) . 
+            '/Views/index.blade.php'
+        );
         
         $this->output->writeln([
             'Add this provider to config/app.php:',
-            'Modules\\' . studly_case($this->plural_name) . '\Providers\\' . studly_case($this->singular_name) . 'ServiceProvider::class,'
+            'Modules\\' . studly_case($this->plural_name) . '\Providers\\' .
+             studly_case($this->singular_name) . 'ServiceProvider::class,'
         ]);
     }
 
